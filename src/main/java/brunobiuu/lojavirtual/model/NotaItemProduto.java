@@ -39,7 +39,7 @@ public class NotaItemProduto implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name = "produto_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "produto_fk"))
-	private produto produto;
+	private Produto produto;
 
 
 	public Long getId() {
@@ -72,12 +72,12 @@ public class NotaItemProduto implements Serializable {
 	}
 
 
-	public produto getProduto() {
+	public Produto getProduto() {
 		return produto;
 	}
 
 
-	public void setProduto(produto produto) {
+	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
 

@@ -3,7 +3,6 @@ package brunobiuu.lojavirtual.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.ConstraintMode;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ForeignKey;
@@ -17,21 +16,21 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "imagem_produto")
-@SequenceGenerator(name = "seq_imagem_produto", sequenceName = "seq_imagem_produto", allocationSize = 1, initialValue = 1)
-public class ImagemProduto implements Serializable {
+@Table(name = "avaliacao_produto")
+@SequenceGenerator(name = "seq_avaliacao_produto", sequenceName = "seq_avaliacao_produto", allocationSize = 1, initialValue = 1)
+public class AvaliacaoProduto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_imagem_produto")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_avaliacao_produto")
 	private Long id;
 	
-	@Column(columnDefinition = "text")
-	private String imagemOriginal;
+	private Integer nota;
 	
-	@Column(columnDefinition = "text")
-	private String imagemMiniatura;
+	@ManyToOne(targetEntity = Pessoa.class)
+	@JoinColumn(name = "pessoa_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "pessoa_fk"))
+	private Pessoa pessoa;
 	
 	@ManyToOne
 	@JoinColumn(name = "produto_id", nullable = false, foreignKey = @ForeignKey(value = ConstraintMode.CONSTRAINT, name = "produto_fk"))
@@ -45,20 +44,20 @@ public class ImagemProduto implements Serializable {
 		this.id = id;
 	}
 
-	public String getImagemOriginal() {
-		return imagemOriginal;
+	public Integer getNota() {
+		return nota;
 	}
 
-	public void setImagemOriginal(String imagemOriginal) {
-		this.imagemOriginal = imagemOriginal;
+	public void setNota(Integer nota) {
+		this.nota = nota;
 	}
 
-	public String getImagemMiniatura() {
-		return imagemMiniatura;
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
 
-	public void setImagemMiniatura(String imagemMiniatura) {
-		this.imagemMiniatura = imagemMiniatura;
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
 	}
 
 	public Produto getProduto() {
@@ -82,11 +81,9 @@ public class ImagemProduto implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ImagemProduto other = (ImagemProduto) obj;
+		AvaliacaoProduto other = (AvaliacaoProduto) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 	
 	
 
