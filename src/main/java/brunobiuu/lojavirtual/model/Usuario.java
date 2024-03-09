@@ -25,13 +25,13 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "usuario")
-@SequenceGenerator(name = "seg_usuario", sequenceName = "seg_usuario", allocationSize = 1, initialValue = 1)
+@SequenceGenerator(name = "seq_usuario", sequenceName = "seq_usuario", allocationSize = 1, initialValue = 1)
 public class Usuario implements UserDetails {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seg_usuario")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_usuario")
 	private Long id;
 	
 	private String login;
